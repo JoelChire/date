@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Estudiante;
+use App\Http\Controllers\Controller;
+use App\Paise;
+use App\Sexo;
+use Session;
+use Redirect;
 
 class EstudiantesController extends Controller
 {
@@ -13,7 +19,8 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        //
+        $estudiantes = Estudiante::All();
+        return view('estudiantes.index',compact('estudiantes'));
     }
 
     /**
