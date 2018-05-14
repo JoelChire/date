@@ -13,7 +13,7 @@ class CreateDocentesTable extends Migration
      */
     public function up()
     {
-        Schema::create('docentes', function (Blueprint $table) 
+        Schema::create('docentes', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8mb4';
@@ -23,9 +23,10 @@ class CreateDocentesTable extends Migration
             $table->string('codigo', 20)->unique();
             $table->string('profesion', 45);
             $table->string('grado', 45);
-            $table->string('departamento',80)->nullable();
             $table->boolean('tutor');
             $table->boolean('supertutor');
+            $table->integer('departamento_id') -> unsigned();
+            $table->foreign('departamento_id') -> references('id') -> on('departamentos')
             $table->integer('persona_id') -> unsigned();
             $table->foreign('persona_id') -> references('id') -> on('personas');
 
