@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Ega&Siara | @yield('head_title')</title>
+  <title>DATE | @yield('head_title')</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link href="{{ asset('/adminlte/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('/adminlte/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('/adminlte/Ionicons/css/ionicons.min.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('/adminlte/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ asset('/adminlte/css/skins/skin-purple.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('/adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   @yield('head_link')
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
     <a href="{{ asset('/home') }}" class="logo">
@@ -28,38 +28,12 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('/imagenes') }}/{{ Auth::user()->foto }}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+              <span class="hidden-xs">Salir</span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="user-header">
-                <img src="{{ asset('/imagenes') }}/{{ Auth::user()->foto }}" class="img-circle" alt="User Image">
-                <p>
-                  {{ Auth::user()->name }} -
-                  @if(Auth::user()->role==0)
-                    Administrador
-                  @elseif(Auth::user()->role==1)
-                    Miembro Premium
-                  @elseif(Auth::user()->role==2)
-                    Miembro Estándar
-                  @endif
-                  <small>Miembro desde {{ Carbon\Carbon::parse(Auth::user()->created_at)->format('( d - m - Y )') }}</small>
-                </p>
-              </li>
-              <li class="user-footer">
-                <div class="pull-right">
-                  <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">
-                    Salir
-                  </a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                  </form>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
           </li>
         </ul>
       </div>
@@ -73,25 +47,32 @@
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
+          <a href="#"><i class="fa fa-circle text-success"></i>
+          @if(Auth::user()->role==0)
+            Administrador
+          @elseif(Auth::user()->role==1)
+            Coordinador de tutores
+          @elseif(Auth::user()->role==2)
+            Tutor
+          @elseif(Auth::user()->role==3)
+            Docente
+          @elseif(Auth::user()->role==4)
+            Estudiante
+          @endif
+          </a>
         </div>
       </div>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><center>BIENVENIDO</center></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-film"></i> <span>PERFIL</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+        <li>
+          <a href="{{ asset('/estudiantes') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
+            <span class="fa pull-right">
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ asset('/peliculas') }}">Visualizar</a></li>
-            <li><a href="{{ asset('/peliculas/list') }}">Editar</a></li>
-          </ul>
         </li>
-        @if(Auth::user()->role==0)
+        @if(Auth::user()->role==3)
           <li class="treeview">
-            <a href="#"><i class="fa fa-cog"></i> <span>ASIGNATURAS</span>
+            <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -126,7 +107,7 @@
     <div class="pull-right hidden-xs">
       @yield('footer')
     </div>
-    <strong>Copyright &copy; 2017 <a href="#">Ega&Siara</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2018 <a href="#">DATE</a>.</strong> Todos los derechos reservados.
   </footer>
 
 </div>
