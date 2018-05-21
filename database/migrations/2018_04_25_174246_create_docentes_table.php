@@ -25,10 +25,10 @@ class CreateDocentesTable extends Migration
             $table->string('grado', 45);
             $table->boolean('tutor');
             $table->boolean('supertutor');
-            $table->integer('departamento_id') -> unsigned();
-            $table->foreign('departamento_id') -> references('id') -> on('departamentos')
-            $table->integer('persona_id') -> unsigned();
-            $table->foreign('persona_id') -> references('id') -> on('personas');
+            $table->integer('persona_id')-> unsigned();
+            $table->foreign('persona_id')-> references('id')-> on('personas');
+            $table->integer('departamento_id')-> unsigned();
+            $table->foreign('departamento_id')-> references('id') -> on('departamentos');
 
             $table->timestamps();
             $table->softDeletes();

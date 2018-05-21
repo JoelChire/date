@@ -29,11 +29,7 @@ class CreatePersonasTable extends Migration
             $table->string('contacto', 15);
             $table->integer('sexo_id') -> unsigned();
             $table->foreign('sexo_id') -> references('id') -> on('sexos');
-            $table->integer('paise_id') -> unsigned();
-            $table->foreign('paise_id') -> references('id') -> on('paises');
-            $table->integer('role_id') -> unsigned();
-            $table->foreign('role_id') -> references('id') -> on('roles');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });
