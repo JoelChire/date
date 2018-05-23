@@ -65,7 +65,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><center>BIENVENIDO</center></li>
         <li>
-          <a href="{{ asset('/estudiantes') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
+          <a href="{{ asset('/docentes/index') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
             <span class="fa pull-right">
             </span>
           </a>

@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
       $this->call([
             FacultadesTableSeeder::class,
             EscuelasTableSeeder::class,
+            UsersTableSeeder::class,
     	]);
     }
 }

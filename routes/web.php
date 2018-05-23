@@ -23,3 +23,5 @@ Route::group(['middleware' => 'auth'], function()
 {
 	Route::resource('estudiantes', 'EstudiantesController');
 });
+
+Route::get('/docentes/index', 'DocentesController@index')->name('docentes');
