@@ -14,6 +14,10 @@ class Persona extends Model
     {
         return $this->belongsTo('App/Paise');
     }
+    public function User()
+    {
+        return $this->belongsTo('App/User');
+    }
     public function telefonos()
     {
         return $this->hasMany('App/Telefono');

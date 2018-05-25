@@ -60,7 +60,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-                        <input type="hidden" name="role" value="2">
+                        <input type="hidden" name="role" value="3">
                         <input type="hidden" name="foto" value="users/003.png">
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
