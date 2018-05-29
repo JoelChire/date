@@ -14,9 +14,9 @@ class Persona extends Model
     {
         return $this->belongsTo('App/Paise');
     }
-    public function Role()
+    public function User()
     {
-        return $this->belongsTo('App/Role');
+        return $this->belongsTo('App/User');
     }
     public function telefonos()
     {

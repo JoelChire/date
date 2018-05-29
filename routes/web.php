@@ -21,5 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function()
 {
-	Route::resource('estudiantes', 'EstudiantesController');
+    Route::resource('estudiantes', 'EstudiantesController');
+    Route::resource('docentes', 'DocentesController');
 });
+
+Route::get('/docentes/index', 'DocentesController@index')->name('docentes');
