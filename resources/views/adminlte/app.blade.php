@@ -71,6 +71,23 @@
           </a>
         </li>
         @if(Auth::user()->role==4)
+<<<<<<< HEAD
+=======
+          <li class="treeview">
+            <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ asset('/actores') }}">IS1</a></li>
+              <li><a href="{{ asset('/escritores') }}">Base de datos</a></li>
+              <li><a href="{{ asset('/productores') }}">Matemática</a></li>
+            </ul>
+          </li>
+        @endif
+        @if(Auth::user()->role==3)
+>>>>>>> 7c515f4477622157addf6ce1bf08d66673765081
           <li class="treeview">
             <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
               <span class="pull-right-container">
