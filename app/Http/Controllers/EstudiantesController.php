@@ -7,6 +7,7 @@ use App\Estudiante;
 use App\Http\Controllers\Controller;
 use App\Paise;
 use App\Sexo;
+use Auth;
 use Session;
 use Redirect;
 
@@ -19,8 +20,18 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        $estudiantes = Estudiante::All();
-        return view('estudiantes.index',compact('estudiantes'));
+        $id_user = Auth::user()->id;
+        $cursos = \DB::table('users')
+        ->select('cursos.id as id', 'cursos.nombre as nombre')
+        ->join('personas', 'personas.user_id', '=', 'users.id')
+        ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
+        ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
+        ->join('docentecursos', 'estudiantedocentecursos.docentecurso_id', '=', 'docentecursos.id')
+        ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
+        ->where('users.id', $id_user)
+        ->get();
+        return view('estudiantes.index',compact('cursos'));
+
     }
 
     /**
@@ -52,7 +63,29 @@ class EstudiantesController extends Controller
      */
     public function show($id)
     {
-        //
+      $id_user = Auth::user()->id;
+      $notas = \DB::table('users')
+      ->select('evaluaciones.nombre as nombre', 'eedcs.valor as valor')
+      ->join('personas', 'personas.user_id', '=', 'users.id')
+      ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
+      ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
+      ->join('docentecursos', 'estudiantedocentecursos.docentecurso_id', '=', 'docentecursos.id')
+      ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
+      ->join('eedcs', 'eedcs.estudiantedocentecurso_id', '=', 'estudiantedocentecursos.id')
+      ->join('evaluaciones', 'eedcs.evaluacione_id', '=', 'evaluaciones.id')
+      ->where('users.id', $id_user)
+      ->where('cursos.id', $id)
+      ->get();
+      $cursos = \DB::table('users')
+      ->select('cursos.id as id', 'cursos.nombre as nombre')
+      ->join('personas', 'personas.user_id', '=', 'users.id')
+      ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
+      ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
+      ->join('docentecursos', 'estudiantedocentecursos.docentecurso_id', '=', 'docentecursos.id')
+      ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
+      ->where('users.id', $id_user)
+      ->get();
+      return view('estudiantes.show',compact('cursos','notas'));
     }
 
     /**
