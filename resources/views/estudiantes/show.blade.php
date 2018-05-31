@@ -10,7 +10,7 @@
 @endsection
 
 @section('header_title')
-	CURSOS
+	NOTAS
 @endsection
 
 @section('header_descripion')
@@ -21,49 +21,29 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="box box-success">
-				<div class="box-header">
-					<h3 class="box-title">
-						LISTA
-					</h3>
-				</div>
 				<div class="box-body">
-					<table id="cursos" class="table table-bordered table-striped">
+					<table id="notas" class="table table-bordered table-striped">
 						<thead >
 							<tr class="bg-black">
+              @foreach($notas as $nota)
 								<th class="col-xs-1">
 									<center>
-										ID
+										{{$nota -> nombre }}
 									</center>
 								</th>
-								<th class="col-xs-11">
-									<center>
-										NOMBRE
-									</center>
-								</th>
-								<th>
-									<center>
-										<i class="fa fa-eye" aria-hidden="true">
-										</i>
-									</center>
-								</th>
+              @endforeach
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($cursos as $curso)
 								<tr>
+								@foreach($notas as $nota)
 									<td>
-										{{$curso -> id }}
+										<center>
+										{{$nota -> valor }}
+										</center>
 									</td>
-									<td>
-										{{$curso -> nombre }}
-									</td>
-									<td>
-										{{ Form::open(['method' => 'get', 'route' => ['estudiantes.show', $curso -> id]]) }}
-											{{ Form::button('', ['type' => 'submit', 'class' => 'btn btn-primary btn-block fa fa-eye'] )  }}
-										{{ Form::close() }}
-									</td>
+								@endforeach
 								</tr>
-							@endforeach
 						</tbody>
 					</table>
 				</div>
@@ -84,7 +64,7 @@
     <script src="{{ asset('/adminlte/fastclick/lib/fastclick.js') }}" type="text/javascript"></script>
     <script>
     	$(function () {
-    		$('#cursos').DataTable({
+    		$('#productores').DataTable({
     			"lengthMenu": [ 5, 25, 50, 100 ],
     			"language": {
 				"paginate": {
