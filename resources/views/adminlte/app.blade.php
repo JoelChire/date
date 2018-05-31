@@ -65,42 +65,25 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><center>BIENVENIDO</center></li>
         <li>
-          <a href="{{ asset('/docentes/index') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
+          <a href="{{ asset('/estudiantes') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
             <span class="fa pull-right">
             </span>
           </a>
         </li>
         @if(Auth::user()->role==4)
-<<<<<<< HEAD
-=======
           <li class="treeview">
-            <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
+            <a href="{{ asset('/estudiantes') }}"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{ asset('/actores') }}">IS1</a></li>
-              <li><a href="{{ asset('/escritores') }}">Base de datos</a></li>
-              <li><a href="{{ asset('/productores') }}">Matemática</a></li>
+              @foreach($cursos as $curso)
+                <li><a href="{{url('/estudiantes/show',$curso -> id)}}">{{$curso -> nombre }}</a></li>
+              @endforeach
             </ul>
           </li>
-        @endif
-        @if(Auth::user()->role==3)
->>>>>>> 7c515f4477622157addf6ce1bf08d66673765081
-          <li class="treeview">
-            <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="{{ asset('/actores') }}">IS1</a></li>
-              <li><a href="{{ asset('/escritores') }}">Base de datos</a></li>
-              <li><a href="{{ asset('/productores') }}">Matemática</a></li>
-            </ul>
-          </li>
-        @endif
+        @endif        
         @if(Auth::user()->role==3)
           <li class="treeview">
             <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
@@ -116,9 +99,6 @@
           </li>
         @endif
         @if(Auth::user()->role==2)
-          <br>
-          <br>
-          <img width="100%" src="{{ asset('/publicidad/001.jpeg') }}">
         @endif
       </ul>
     </section>

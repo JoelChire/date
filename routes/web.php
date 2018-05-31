@@ -17,8 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('estudiantes/show/{id}', [
+    'as' => 'estudiantes',
+    'uses' => 'EstudiantesController@show',
+]);
 Route::group(['middleware' => 'auth'], function()
 {
     Route::resource('estudiantes', 'EstudiantesController');
