@@ -36,4 +36,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectPath()
+    {
+        if (auth()->user()->role==0) {
+            return '/administrador';
+        }
+        elseif (auth()->user()->role==1) {
+            return '/coordinador';
+        }
+        elseif (auth()->user()->role==2) {
+            return '/tutor';
+        }
+        elseif (auth()->user()->role==3) {
+            return '/docentes';
+        }
+        elseif (auth()->user()->role==4) {
+            return '/estudiantes';
+        }
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+    }
 }

@@ -43,7 +43,7 @@
     <section class="sidebar">
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ asset('/imagenes') }}/{{ Auth::user()->foto }}" class="img-circle" alt="User Image">
+          <img src="{{ asset('/imagenes/users') }}/{{ Auth::user()->foto }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
@@ -65,7 +65,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><center>BIENVENIDO</center></li>
         <li>
-          <a href="{{ asset('/estudiantes') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
+          <a href="{{ asset('/estudiantes/perfil') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
             <span class="fa pull-right">
             </span>
           </a>

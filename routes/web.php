@@ -20,13 +20,13 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('estudiantes/show/{id}', [
+
+Route::get('/estudiantes/perfil', 'EstudiantesController@perfil')->name('perfil');
+Route::get('/estudiantes/show/{id}', [
     'as' => 'estudiantes',
     'uses' => 'EstudiantesController@show',
 ]);
-Route::group(['middleware' => 'auth'], function()
-{
-	Route::resource('estudiantes', 'EstudiantesController');
-});
+Route::resource('estudiantes', 'EstudiantesController');
+
 
 Route::get('/docentes/index', 'DocentesController@index')->name('docentes');
