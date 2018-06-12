@@ -45,7 +45,7 @@ class DocentesController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
