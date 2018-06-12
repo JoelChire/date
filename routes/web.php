@@ -24,10 +24,17 @@ Route::get('estudiantes/show/{id}', [
     'as' => 'estudiantes',
     'uses' => 'EstudiantesController@show',
 ]);
+
 Route::group(['middleware' => 'auth'], function()
 {
-    Route::resource('estudiantes', 'EstudiantesController');
+	Route::resource('estudiantes', 'EstudiantesController');
+});
+
+Route::group(['middleware' => 'auth'], function()
+{
+    //Route::resource('estudiantes', 'EstudiantesController');
     Route::resource('docentes', 'DocentesController');
 });
 
-Route::get('/docentes/index', 'DocentesController@index')->name('docentes');
+Route::get('/docentes/show', 'DocentesController@show')->name('docentes');
+Route::get('/docentes/create', 'DocentesController@create')->name('docentes');

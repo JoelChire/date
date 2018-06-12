@@ -22,8 +22,4 @@ class Docente extends Model
     {
         return $this->hasMany('App/Supertutorasigna');
     }
-    public function supertutorasginas()
-    {
-        return $this->hasMany('App/Supertutorasigna');
-    }
 }
