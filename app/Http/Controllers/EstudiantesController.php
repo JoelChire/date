@@ -113,6 +113,22 @@ class EstudiantesController extends Controller
       return view('estudiantes.perfil',compact('estudiante','cursos'));
     }
 
+    public function password()
+    {
+      $id_user = Auth::user()->id;
+      $cursos = \DB::table('users')
+      ->select('cursos.id as id', 'cursos.nombre as nombre')
+      ->join('personas', 'personas.user_id', '=', 'users.id')
+      ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
+      ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
+      ->join('docentecursos', 'estudiantedocentecursos.docentecurso_id', '=', 'docentecursos.id')
+      ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
+      ->where('users.id', $id_user)
+      ->get();
+
+      return view('estudiantes.password',compact('cursos'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

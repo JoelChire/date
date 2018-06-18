@@ -20,13 +20,15 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/estudiantes/perfil', 'EstudiantesController@perfil')->name('perfil');
-Route::get('/estudiantes/show/{id}', [
+Route::group(['middleware' => 'auth'], function()
+{
+  Route::get('/estudiantes/perfil', 'EstudiantesController@perfil')->name('perfil');
+  Route::get('/estudiantes/password', 'EstudiantesController@password')->name('password');
+  Route::get('/estudiantes/show/{id}', [
     'as' => 'estudiantes',
     'uses' => 'EstudiantesController@show',
-]);
-Route::resource('estudiantes', 'EstudiantesController');
-
-
-Route::get('/docentes/index', 'DocentesController@index')->name('docentes');
+  ]);
+  Route::resource('estudiantes', 'EstudiantesController');
+});
+Route::get('/user/password','UsersController@password')->name('password');
+Route::post('/user/updatepassword','UsersController@updatePassword')->name('updatePassword');

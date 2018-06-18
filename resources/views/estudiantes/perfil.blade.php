@@ -13,7 +13,10 @@
 @endsection
 
 @section('header_descripion')
-
+@if (Session::has('status'))
+<div class='text-success'>
+		<font color="maroon">{{Session::get('status')}}</font>
+@endif
 @endsection
 
 @section('content')
@@ -149,15 +152,18 @@
             </table>
         </div>
 		<div class="box-footer">
-			@if(Auth::user()->role==4)
 			<div class="row">
 				<div class="col-lg-6">
 				{{ Form::open(['method' => 'get', 'route' => ['estudiantes.edit', $estudiante -> id]]) }}
 				{{ Form::button('Editar Perfil', ['type' => 'submit', 'class' => 'btn btn-success btn-block'] )  }}
 				{{ Form::close() }}
 				</div>
+				<div class="col-lg-6">
+				{{ Form::open(['method' => 'get', 'route' => ['password']]) }}
+				{{ Form::button('Cambiar contraseña', ['type' => 'submit', 'class' => 'btn btn-success btn-block'] )  }}
+				{{ Form::close() }}
+				</div>
 			</div>
-			@endif
 		</div>
 		</div>
    	</div>
