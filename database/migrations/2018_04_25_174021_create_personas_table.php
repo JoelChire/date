@@ -27,6 +27,7 @@ class CreatePersonasTable extends Migration
             $table->string('direccion', 100);
             $table->datetime('nacimiento');
             $table->string('contacto', 15);
+            $table->string('facebook', 100);
             $table->integer('user_id') -> unsigned();
             $table->foreign('user_id') -> references('id') -> on('users');
             $table->integer('sexo_id') -> unsigned();

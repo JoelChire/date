@@ -28,6 +28,10 @@ Route::group(['middleware' => 'auth'], function()
     'as' => 'estudiantes',
     'uses' => 'EstudiantesController@show',
   ]);
+  Route::get('/estudiantes/edit/{id}', [
+    'as' => 'estudiantes',
+    'uses' => 'EstudiantesController@edit',
+  ]);
   Route::resource('estudiantes', 'EstudiantesController');
 });
 Route::get('/user/password','UsersController@password')->name('password');

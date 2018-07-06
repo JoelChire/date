@@ -64,11 +64,17 @@
       </div>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><center>BIENVENIDO</center></li>
-        <li>
+        <li class="treeview">
           <a href="{{ asset('/estudiantes/perfil') }}"><i class="fa fa-user"></i> <span>PERFIL</span>
-            <span class="fa pull-right">
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="{{asset('/estudiantes/perfil')}}">Visualizar</a></li>
+            <li><a href="{{url('/estudiantes/edit',$id_user)}}">Editar</a></li>
+            <li><a href="{{asset('/user/password')}}">Cambiar contraseña</a></li>
+          </ul>
         </li>
         @if(Auth::user()->role==4)
           <li class="treeview">
@@ -78,6 +84,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
+              <li><a href="{{ asset('/estudiantes') }}">Listado</a></li>
               @foreach($cursos as $curso)
                 <li><a href="{{url('/estudiantes/show',$curso -> id)}}">{{$curso -> nombre }}</a></li>
               @endforeach

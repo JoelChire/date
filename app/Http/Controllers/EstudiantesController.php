@@ -9,6 +9,7 @@ use App\Paise;
 use App\Sexo;
 use App\Persona;
 use App\User;
+use App\Telefono;
 use Auth;
 use Session;
 use Redirect;
@@ -32,7 +33,7 @@ class EstudiantesController extends Controller
         ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
         ->where('users.id', $id_user)
         ->get();
-        return view('estudiantes.index',compact('cursos'));
+        return view('estudiantes.index',compact('cursos','id_user'));
 
     }
 
@@ -87,15 +88,16 @@ class EstudiantesController extends Controller
       ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
       ->where('users.id', $id_user)
       ->get();
-      return view('estudiantes.show',compact('cursos','notas'));
+      return view('estudiantes.show',compact('cursos','notas','id_user'));
     }
 
     public function perfil()
     {
       $id_user = Auth::user()->id;
       $estudiante = \DB::table('users')
-      ->select('users.id as id', 'users.name as user','users.email as email','users.password as contraseña','users.foto as foto','personas.nombre as nombres','personas.primerapellido as primerapellido','personas.segundoapellido as segundoapellido','estudiantes.codigo as codigo','personas.dni as dni','personas.contacto as contacto','personas.direccion as direccion','escuelas.sigla as escuela','facultades.sigla as facultad')
+      ->select('users.id as id', 'users.name as user','users.email as email','users.password as contraseña','users.foto as foto','personas.nombre as nombres','personas.primerapellido as primerapellido','personas.segundoapellido as segundoapellido','estudiantes.codigo as codigo','personas.dni as dni','personas.contacto as contacto','personas.direccion as direccion','escuelas.sigla as escuela','facultades.sigla as facultad','telefonos.numero as numero','personas.facebook as facebook')
       ->join('personas', 'personas.user_id', '=', 'users.id')
+      ->join('telefonos', 'telefonos.persona_id', '=', 'personas.id')
       ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
       ->join('escuelas','estudiantes.escuela_id', '=', 'escuelas.id')
       ->join('facultades','escuelas.facultade_id', '=', 'facultades.id')
@@ -110,7 +112,7 @@ class EstudiantesController extends Controller
       ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
       ->where('users.id', $id_user)
       ->get();
-      return view('estudiantes.perfil',compact('estudiante','cursos'));
+      return view('estudiantes.perfil',compact('estudiante','cursos','id_user'));
     }
 
     public function password()
@@ -126,7 +128,7 @@ class EstudiantesController extends Controller
       ->where('users.id', $id_user)
       ->get();
 
-      return view('estudiantes.password',compact('cursos'));
+      return view('estudiantes.password',compact('cursos','id_user'));
     }
 
     /**
@@ -139,8 +141,9 @@ class EstudiantesController extends Controller
     {
       $id_user = Auth::user()->id;
       $estudiante = \DB::table('users')
-      ->select('users.id as id', 'users.name as user','users.email as email','users.foto as foto','personas.contacto as contacto','personas.direccion as direccion')
+      ->select('users.id as id', 'users.name as user','users.email as email','users.foto as foto','personas.contacto as contacto','personas.direccion as direccion','telefonos.numero as numero','personas.facebook as facebook')
       ->join('personas', 'personas.user_id', '=', 'users.id')
+      ->join('telefonos', 'telefonos.persona_id', '=', 'personas.id')
       ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
       ->where('users.id', $id_user)
       ->first();
@@ -153,7 +156,7 @@ class EstudiantesController extends Controller
       ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
       ->where('users.id', $id_user)
       ->get();
-      return view('estudiantes.edit',compact('estudiante','cursos'));
+      return view('estudiantes.edit',compact('estudiante','cursos','id_user'));
     }
 
     /**
@@ -167,6 +170,7 @@ class EstudiantesController extends Controller
     {
       $user = User::find($id);
       $estudiante = Persona::where('user_id',$id)->first();
+      $telefono = Telefono::where('persona_id',$estudiante -> id)->first();
 
      // $personaUser -> departamento_id = $request -> departamentoid;
       $foto = $request ->file('foto');
@@ -179,14 +183,16 @@ class EstudiantesController extends Controller
           $user->foto = $name_photo;
           $user->save();
       }
-
+      $telefono -> numero = $request -> numero;
       $user -> name = $request -> usuario;
       $estudiante -> contacto = $request -> contacto;
+      $estudiante -> facebook = $request -> facebook;
       $user -> email = $request -> email;
       $estudiante -> direccion = $request -> direccion;
 
       $user -> save();
       $estudiante -> save();
+      $telefono -> save();
       return redirect()->action(
       'EstudiantesController@perfil'
       );

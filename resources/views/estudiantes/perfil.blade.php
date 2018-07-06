@@ -97,16 +97,16 @@
 								</td>
 						</tr>
 						<tr>
-		<td class="bg-primary" align="right" class="col-xs-4">
-			<b>
-			ESCUELA:
-			</b>
-		</td>
-		<td class="col-xs-8" >
-		{{$estudiante->escuela}}
-		</td>
-	</tr>
-                   	 	<tr>
+							<td class="bg-primary" align="right" class="col-xs-4">
+								<b>
+									ESCUELA:
+								</b>
+							</td>
+							<td class="col-xs-8" >
+								{{$estudiante->escuela}}
+							</td>
+						</tr>
+            <tr>
 							<td class="bg-primary" align="right" class="col-xs-4">
 								<b>
 								DNI:
@@ -117,7 +117,7 @@
 							</td>
 						</tr>
 
-                    	<tr>
+            <tr>
 							<td class="bg-primary" align="right" class="col-xs-4">
 								<b>
 								CELULAR:
@@ -125,6 +125,17 @@
 							</td>
 							<td class="col-xs-8" >
 							{{$estudiante->contacto}}
+							</td>
+						</tr>
+
+						<tr>
+							<td class="bg-primary" align="right" class="col-xs-4">
+								<b>
+									NÚMERO DE CONTACTO:
+								</b>
+							</td>
+							<td class="col-xs-8" >
+								{{$estudiante->numero}}
 							</td>
 						</tr>
 
@@ -138,7 +149,17 @@
 							{{$estudiante->email}}
 							</td>
 						</tr>
-                    	<tr>
+						<tr>
+						<td class="bg-primary" align="right" class="col-xs-4">
+							<b>
+							FACEBOOK:
+							</b>
+						</td>
+						<td class="col-xs-8" >
+						<a href="{{$estudiante->facebook}}">{{$estudiante->facebook}}</a>
+						</td>
+					</tr>
+          <tr>
 							<td class="bg-primary" align="right" class="col-xs-4">
 								<b>
 								DIRECCIÓN:

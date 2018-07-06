@@ -49,11 +49,9 @@ PERFIL
 								</i>
 							</span>
 							{{ Form::text('contacto', $estudiante->contacto, ['class' => 'form-control', 'placeholder' => 'Ingrese su numero telefónico']) }}
-
 						</div>
 					</div>
 				</div>
-
 					<div class="col-lg-4">
 					<div class="form-group">
 					{{ Form::label('E-MAIL : ') }}
@@ -67,7 +65,19 @@ PERFIL
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-4">
+					<div class="form-group">
+					{{ Form::label('FACEBOOK : ') }}
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-id-card-o">
+								</i>
+							</span>
+							{{ Form::text('facebook', $estudiante->facebook, ['class' => 'form-control', 'placeholder' => 'Ingrese el link de su perfil de facebook']) }}
 
+						</div>
+					</div>
+				</div>
         <div class="col-lg-4">
 					<div class="form-group">
 					{{ Form::label('DIRECCIÓN : ') }}
@@ -81,8 +91,19 @@ PERFIL
 						</div>
 					</div>
 				</div>
-
-				<div class="col-lg-12">
+				<div class="col-lg-4">
+					<div class="form-group">
+					{{ Form::label('NUMERO DE CONTACTO : ') }}
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-id-card-o">
+								</i>
+							</span>
+							{{ Form::text('numero', $estudiante->numero, ['class' => 'form-control', 'placeholder' => 'Ingrese un numero telefónico auxiliar para contactarlo']) }}
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
 					<div class="form-group">
 					{{ Form::label('FOTO DE PERFIL: ') }}
 						<div class="input-group">

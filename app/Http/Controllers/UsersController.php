@@ -22,7 +22,7 @@ class UsersController extends Controller
       ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
       ->where('users.id', $id_user)
       ->get();
-      return view('user.password',compact('cursos'));
+      return view('user.password',compact('cursos','id_user'));
     }
 
     public function updatePassword(Request $request)
@@ -35,7 +35,7 @@ class UsersController extends Controller
       $messages = [
             'mypassword.required' => 'El campo es requerido',
             'password.required' => 'El campo es requerido',
-            'password.confirmed' => 'Los passwords no coinciden',
+            'password.confirmed' => 'Los contraseñas no coinciden',
             'password.min' => 'El mínimo permitido son 6 caracteres',
             'password.max' => 'El máximo permitido son 18 caracteres',
         ];
@@ -49,11 +49,11 @@ class UsersController extends Controller
                 $user = new User;
                 $user->where('id', '=', Auth::user()->id)
                      ->update(['password' => bcrypt($request->password)]);
-                return redirect('estudiantes/perfil')->with('status', 'Contraseña cambiada con éxito');
+                return redirect('estudiantes/perfil')->with('status', 'Contraseña cambiado con éxito');
             }
             else
             {
-                return redirect('estudiantes/perfil')->with('message', 'Credenciales incorrectas');
+                return redirect('user/password')->with('message', 'Contraseña incorrecta');
             }
         }
     }
