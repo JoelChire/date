@@ -98,6 +98,20 @@
             </ul>
           </li>
         @endif
+        @if(Auth::user()->role==3)
+          <li class="treeview">
+            <a href="#"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+            @foreach($cursosdocentes as $cursosdocente)
+              <li><a href="{{ asset('/actores') }}">{{$cursosdocente -> Nombre }}</a></li>
+            @endforeach
+            </ul>
+          </li>
+        @endif
         @if(Auth::user()->role==2)
           <br>
           <br>
