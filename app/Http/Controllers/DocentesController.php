@@ -120,8 +120,20 @@ class DocentesController extends Controller
     {
 
         $id_user = Auth::user()->id;
+        $notasmil = \DB::table('users')
+        ->select('estudiantes.id as codigonotaa','evaluaciones.nombre as nombres', 'eedcs.valor as valor')
+      ->join('personas', 'personas.user_id', '=', 'users.id')
+      ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
+      ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
+      ->join('docentecursos', 'estudiantedocentecursos.docentecurso_id', '=', 'docentecursos.id')
+      ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
+      ->join('eedcs', 'eedcs.estudiantedocentecurso_id', '=', 'estudiantedocentecursos.id')
+      ->join('evaluaciones', 'eedcs.evaluacione_id', '=', 'evaluaciones.id')
+      ->where('docentecursos.id', $id)
+      ->get();
+
         $notas = \DB::table('users')
-      ->select('evaluaciones.nombre as nombre', 'eedcs.valor as valor')
+        ->select('estudiantes.id as codigonotaa','evaluaciones.nombre as nombre', 'eedcs.valor as valor')
       ->join('personas', 'personas.user_id', '=', 'users.id')
       ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
       ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
@@ -147,7 +159,7 @@ class DocentesController extends Controller
 
         //dd($id);
         $Eedcs = \DB::table('users')
-      ->select('docentecursos.id as idcurso','estudiantes.codigo as Codigo', 'personas.nombre as Nombre')
+      ->select('estudiantes.id as codigoestudiante','docentecursos.id as idcurso','estudiantes.codigo as Codigo', 'personas.nombre as Nombre')
       ->join('personas', 'personas.user_id', '=', 'users.id')
       ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
       ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
@@ -156,7 +168,9 @@ class DocentesController extends Controller
       ->where('docentecursos.id', $id)
       ->get();
       //dd($notas);
-      return view('docentes.nota',compact('Eedcs','cursosdocentes','notas'));
+      //dd($Eedcs);
+      //dd($notasmil);
+      return view('docentes.nota',compact('Eedcs','cursosdocentes','notas','notasmil'));
      
     }
 }

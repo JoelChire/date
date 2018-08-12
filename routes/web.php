@@ -35,3 +35,23 @@ Route::get('milca/{idguest}', [
     'as' => 'milca',
     'uses' => 'DocentesController@nota',
 ]);
+Route::get('gethint', function()
+{
+    $notasestudiante = \DB::table('users')
+    ->select('evaluaciones.nombre as nombre', 'eedcs.valor as valor')
+    ->join('personas', 'personas.user_id', '=', 'users.id')
+    ->join('estudiantes', 'estudiantes.persona_id', '=', 'personas.id')
+    ->join('estudiantedocentecursos', 'estudiantedocentecursos.estudiante_id', '=', 'estudiantes.id')
+    ->join('docentecursos', 'estudiantedocentecursos.docentecurso_id', '=', 'docentecursos.id')
+    ->join('cursos', 'docentecursos.curso_id', '=', 'cursos.id')
+    ->join('eedcs', 'eedcs.estudiantedocentecurso_id', '=', 'estudiantedocentecursos.id')
+    ->join('evaluaciones', 'eedcs.evaluacione_id', '=', 'evaluaciones.id')
+    ->where('estudiantes.id', 1)
+    ->where('docentecursos.id', 1)
+    ->where('estudiantedocentecursos.id',1)
+    ->get();
+
+	
+    return response()->json(array('nota'=> $notasestudiante), 200);
+
+});

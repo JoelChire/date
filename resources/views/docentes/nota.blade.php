@@ -24,7 +24,7 @@
 				<div class="box-body">
 					<table id="notas" class="table table-bordered table-striped">
 						<thead >
-							<tr class="bg-black">
+							<tr class="bg-black" id="nomnota">
                             
                                 <th class="col-xs-4">
 									<center>
@@ -36,13 +36,20 @@
 										NOMBRE
 									</center>
 								</th>
-                                 @foreach($notas as $nota)
-								    <th class="col-xs-1">
-									    <center>
-                                            {{$nota -> nombre }}
-									    </center>
-								    </th>
-                                @endforeach
+								@foreach($Eedcs as $Eedc)
+								@if ($loop->first)
+									@foreach($notas as $nota)
+											@if ($nota->codigonotaa ===  $Eedc->codigoestudiante)
+												<th class="col-xs-1">
+														<center>
+															{{ $nota->nombre }}
+														</center>
+													</th> 
+											@endif
+										</th>
+									@endforeach
+									@endif
+								@endforeach
 							</tr>
 						</thead>
 						<tbody>  
@@ -56,15 +63,19 @@
 							        </td>
 							        <td>
 							            <center>
-                                            {{$Eedc -> Nombre}}
+                                            {{ $Eedc->Nombre }}
 							            </center>
 							        </td>
                                     @foreach($notas as $nota)
-							        <td>
-							            <center>
-                                            {{$nota -> valor}}
-							            </center>
-							        </td> 
+							        
+											@if ($nota->codigonotaa ===  $Eedc->codigoestudiante)
+												<td>
+													<center>
+													{{$nota -> valor}}
+													</center>
+												</td> 
+											@endif
+							         
                                     @endforeach
 								                            
 							    @endforeach
