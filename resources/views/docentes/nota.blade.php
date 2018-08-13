@@ -10,7 +10,17 @@
 @endsection
 
 @section('header_title')
-	NOTAS
+ <div class="row">
+ 	<div class="col-md-10">
+ 		NOTAS
+ 	</div>
+	<div class="col-md-2 ml-auto">
+		<button type='submit' class='btn btn-primary' data-toggle="modal" data-target="#agregar">
+				<span class='glyphicon glyphicon-plus'></span> Agregar Nota
+		</button>
+	</div>
+ </div>
+
 @endsection
 
 @section('header_descripion')
@@ -18,6 +28,30 @@
 @endsection
 
 @section('content')
+<div class="modal fade" id="agregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="align-items:baseline;">
+						<h4 class="modal-title text-left" id="myModalLabel">Nueva Nota</h4>
+						<button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<label>Nombre</label>
+						<input type="text" id="ag_nombre"  class="form-control input-sm">
+						<label>Poderacion</label>
+						<input type="text" id="ag_ponderacion"  class="form-control input-sm">
+						<label>Nota Maxima</label>
+						<input type="text" id="ag_notamaxima"  class="form-control input-sm">
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" id="agregarbtn" data-dismiss="modal">Guardar</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="box box-success">
@@ -126,4 +160,14 @@
     		});
    		});
     </script>
+		<script type="text/javascript">
+	$(document).ready(function(){
+		$('#agregarbtn').click(function(){
+			notanomb=$('#ag_nombre').val();
+			notaponde=$('#ag_ponderacion').val();
+			notamax=$('#ag_notamaxima').val();
+			agregardatos(notanomb,notaponde,notamax);
+		});
+});
+</script>
 @endsection
