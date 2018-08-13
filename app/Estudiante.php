@@ -18,4 +18,8 @@ class Estudiante extends Model
     {
         return $this->hasMany('App/Estudiantedocentecurso');
     }
+    public function tutoreestudiante()
+    {
+        return $this->hasMany('App/Tutoreestudiante');
+    }
 }

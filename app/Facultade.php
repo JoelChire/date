@@ -10,4 +10,8 @@ class Facultade extends Model
     {
         return $this->hasMany('App\Escuela');
     }
+    public function departamentos()
+    {
+        return $this->hasMany('App\Departamento');
+    }
 }

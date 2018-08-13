@@ -72,39 +72,28 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{ asset('/docentes/show') }}">Vizualizar</a></li>
-              <li><a href="{{ asset('/docentes/create') }}">Cuenta</a></li>
+              
         
             </ul>
           </li>
         @if(Auth::user()->role==4)
-          <li class="treeview">
-            <a href="{{ asset('/estudiantes') }}"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              @foreach($cursos as $curso)
-                <li><a href="{{url('/estudiantes/show',$curso -> id)}}">{{$curso -> nombre }}</a></li>
-              @endforeach
-            </ul>
-          </li>
+          
         @endif        
         @if(Auth::user()->role==3)
+          
+        @endif
+        @if(Auth::user()->role==2)
           <li class="treeview">
-            <a href="{{ asset('/docentes') }}"><i class="fa fa-book"></i> <span>ASIGNATURAS</span>
+            <a href="{{ asset('/tutores') }}"><i class="fa fa-book"></i> <span>TUTOR</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-            @foreach($cursosdocentes as $cursosdocente)
-              <li><a href="{{ asset('/docentes') }}">{{$cursosdocente -> Nombre }}</a></li>
-            @endforeach
+            <li><a href="{{ asset('/tutoreestudiantes/tutorados') }}">Tutorados</a></li>
+            
             </ul>
           </li>
-        @endif
-        @if(Auth::user()->role==2)
         @endif
       </ul>
     </section>

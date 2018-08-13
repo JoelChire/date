@@ -43,7 +43,7 @@
 				
 				
 
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<div class="form-group">
 					{{ Form::label('CELULAR : ') }}
 						<div class="input-group">
@@ -57,7 +57,21 @@
 					</div>
 				</div>
 
-				<div class="col-lg-8">
+				<div class="col-lg-3">
+					<div class="form-group">
+					{{ Form::label('NÚMERO DE CONTACTO: ') }}
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-id-card-o">                										
+								</i>
+							</span>
+							{{ Form::text('numero', $personaUser->numero, ['class' => 'form-control', 'placeholder' => 'Ingrese sus nombres']) }}
+						
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
 					<div class="form-group">
 					{{ Form::label('E-MAIL : ') }}
 						<div class="input-group">
@@ -72,7 +86,7 @@
 				</div>
 
 			
-				<div class="col-lg-12">
+				<div class="col-lg-7">
 					<div class="form-group">
 					{{ Form::label('DEPARTAMENTO ACADÉMICO: ') }}
 						<div class="input-group ">
@@ -86,11 +100,21 @@
 					</div>
 				</div>
 
-				
+				<div class="col-lg-5">
+					<div class="form-group">
+					{{ Form::label('FACEBOOK : ') }}
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-id-card-o">                										
+								</i>
+							</span>
+							{{ Form::text('facebook', $personaUser->facebook, ['class' => 'form-control', 'placeholder' => 'Ingrese sus nombres']) }}
+						
+						</div>
+					</div>
+				</div>
 
-			
-
-				<div class="col-lg-12">
+				<div class="col-lg-5">
 					<div class="form-group">
 					{{ Form::label('FOTO DE PERFIL: ') }}
 						<div class="input-group">
@@ -104,14 +128,17 @@
 				</div>
 				
 			</div>
+
+		
+			
 			<div class="box-footer">
-				@if(Auth::user()->role==3)
+			
 				<div class="row">
 					<div class="col-lg-12">
 					{{ Form::submit('Guardar', ['class' => 'btn btn-success btn-block']) }}
 					</div>
 				</div>
-				@endif
+				
 			</div>   
 		</div>
    	</div>

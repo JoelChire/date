@@ -21,7 +21,9 @@ class CreateDepartamentosTable extends Migration
 
             $table->increments('id');
             $table->string('nombre', 100) -> unique();
-            
+            $table->integer('facultade_id') -> unsigned();
+            $table->foreign('facultade_id') -> references('id') -> on('facultades');
+
             $table->timestamps();
             $table->softDeletes();
         });

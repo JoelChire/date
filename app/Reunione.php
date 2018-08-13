@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reunione extends Model
 {
-    public function Estudiantedocentecurso()
+    public function Tutoreestudiante()
     {
-        return $this->belongsTo('App/Estudiantedocentecurso')
+        return $this->belongsTo('App/Tutoreestudiante')
     }
 }

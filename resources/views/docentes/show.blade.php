@@ -13,7 +13,10 @@
 @endsection
 
 @section('header_descripion')
-	
+@if (Session::has('status'))
+<div class='text-success'>
+<font color="maroon">{{Session::get('status')}}</font>
+@endif
 @endsection
 
 @section('content')
@@ -112,7 +115,16 @@
 							{{$personaUser->celular}}
 							</td>
 						</tr>
-
+						<tr>
+							<td class="bg-primary" align="right" class="col-xs-4">
+								<b>
+								NÚMERO DE CONTACTO:
+								</b>
+							</td>
+							<td class="col-xs-8" >
+							{{$personaUser->numero}}
+							</td>
+						</tr>
 							<tr>
 							<td class="bg-primary" align="right" class="col-xs-4">
 								<b>
@@ -123,6 +135,7 @@
 							{{$personaUser->email}}
 							</td>
 						</tr>	
+
                     	<tr>
 							<td class="bg-primary" align="right" class="col-xs-4">
 								<b>
@@ -198,30 +211,37 @@
 							{{$personaUser->Genero}}
 							</td>
 						</tr>
-						<tr>
+						
+						</tr>
+							<tr>
 							<td class="bg-primary" align="right" class="col-xs-4">
 								<b>
-								CARGO:
+								FACEBOOK:
 								</b>
 							</td>
 							<td class="col-xs-8" >
-							
-							{{$personaUser->tutor}}
+							<a target="_blank" href="{{$personaUser->facebook}}">{{$personaUser->facebook}}</a>
 							</td>
-						</tr>
+						</tr>	
+
                     </tbody>
             </table>
         </div>
 		<div class="box-footer">
-			@if(Auth::user()->role==3)
+	
 			<div class="row">
 				<div class="col-lg-6">
 				{{ Form::open(['method' => 'get', 'route' => ['docentes.edit', $personaUser -> id]]) }}
 				{{ Form::button('Editar Perfil', ['type' => 'submit', 'class' => 'btn btn-success btn-block'] )  }}
 				{{ Form::close() }}
 				</div>
+				<div class="col-lg-6">
+				{{ Form::open(['method' => 'get', 'route' => ['password']]) }}
+				{{ Form::button('Cambiar contraseña', ['type' => 'submit', 'class' => 'btn btn-success btn-block'] )  }}
+				{{ Form::close() }}
+				</div>
 			</div>
-			@endif
+				
 		</div>
 		</div>
    	</div>

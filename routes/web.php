@@ -34,7 +34,21 @@ Route::group(['middleware' => 'auth'], function()
 {
     //Route::resource('estudiantes', 'EstudiantesController');
     Route::resource('docentes', 'DocentesController');
+    Route::get('/docentes/show', 'DocentesController@show')->name('show');
+    Route::get('/docentes/show/{id}', [
+    'as' => 'docentes',
+    'uses' => 'DocentesController@show',
+  	]);
 });
 
-Route::get('/docentes/show', 'DocentesController@show')->name('docentes');
-Route::get('/docentes/create', 'DocentesController@create')->name('docentes');
+/*Route::get('/docentes/show', 'DocentesController@show')->name('docentes');
+Route::get('/docentes/create', 'DocentesController@create')->name('docentes'); */
+
+Route::get('/users/password','UsersController@password')->name('password');
+Route::post('/users/updatepassword','UsersController@updatePassword')->name('updatePassword');
+
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::resource('tutoreestudiantes', 'TutoreestudiantesController');
+    //Route::get('/tutoreestudiantes/tutorados', 'TutoreestudiantesController@tutorados')->name('tutorados');
+});

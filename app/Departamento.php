@@ -10,4 +10,8 @@ class Departamento extends Model
     {
         return $this->hasMany('App/Docente');
     }
+    public function Facultade()
+    {
+        return $this->belongsTo('App/Facultade');
+    }
 }
