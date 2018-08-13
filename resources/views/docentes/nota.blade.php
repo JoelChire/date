@@ -25,7 +25,7 @@
 					<table id="notas" class="table table-bordered table-striped">
 						<thead >
 							<tr class="bg-black" id="nomnota">
-                            
+
                                 <th class="col-xs-4">
 									<center>
 										CODIGO
@@ -44,7 +44,7 @@
 														<center>
 															{{ $nota->nombre }}
 														</center>
-													</th> 
+													</th>
 											@endif
 										</th>
 									@endforeach
@@ -52,14 +52,14 @@
 								@endforeach
 							</tr>
 						</thead>
-						<tbody>  
-							
+						<tbody>
+
                                 @foreach($Eedcs as $Eedc)
                                 <tr>
                                     <td>
 							            <center>
 								            {{$Eedc -> Codigo}}
-                                        </center>											
+                                        </center>
 							        </td>
 							        <td>
 							            <center>
@@ -67,17 +67,17 @@
 							            </center>
 							        </td>
                                     @foreach($notas as $nota)
-							        
+
 											@if ($nota->codigonotaa ===  $Eedc->codigoestudiante)
 												<td>
 													<center>
 													{{$nota -> valor}}
 													</center>
-												</td> 
+												</td>
 											@endif
-							         
+
                                     @endforeach
-								                            
+
 							    @endforeach
 							</tr>
 						</tbody>

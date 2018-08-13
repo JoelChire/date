@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,27 +9,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function()
 {
     Route::resource('estudiantes', 'EstudiantesController');
     Route::resource('docentes', 'DocentesController');
 });
-
 Route::get('/docentes/index', 'DocentesController@index')->name('docentes');
-
 //Route::get('milca/{idguest}','EstudiantesController@nota');
 //Route::get('/milca', 'EstudiantesController@nota');
 //Route::resource('/milca', 'EstudiantesController');
-
 Route::get('milca/{idguest}', [
     'as' => 'milca',
     'uses' => 'DocentesController@nota',
@@ -51,7 +43,5 @@ Route::get('gethint', function()
     ->where('estudiantedocentecursos.id',1)
     ->get();
 
-	
     return response()->json(array('nota'=> $notasestudiante), 200);
-
 });

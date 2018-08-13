@@ -10,11 +10,11 @@
 @endsection
 
 @section('header_title')
-    
+
 @endsection
 
 @section('header_descripion')
-    
+
 @endsection
 
 @section('header_level')
@@ -30,7 +30,7 @@
 				<div class="box-header">
 					<h3 class="box-title">
                         TABLAS DE ASIGNATURAS
-					</h3>			
+					</h3>
 				</div>
 
                 <div class="box-body">
@@ -51,26 +51,26 @@
 									<center>
 										ESCUELA
 									</center>
-								</th>	
+								</th>
 								<th class="col-xs-2">
 									<center>
 										Nº ALUMNOS
 									</center>
-								</th>	
+								</th>
 								<th>
 									<center>
 										ACCION
 									</center>
-								</th>					
+								</th>
 							</tr>
-						</thead>                        
+						</thead>
                         <tbody>
 						@foreach($cursosdocentes as $cursosdocente)
                         <tr>
                             <td>
 							<center>
 								{{$cursosdocente -> Nombre }}
-                            </center>											
+                            </center>
 							</td>
 							<td>
 							<center>
@@ -101,8 +101,8 @@
 						</tr>
                         </tbody>
 					</table>
-                </div>   
-				
+                </div>
+
             </div>
         </div>
 </div>
@@ -111,4 +111,3 @@
 @section('footer')
 
 @endsection
-
